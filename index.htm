@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The State of Go</title>
+    <meta charset='utf-8'>
+    <script>
+      var notesEnabled =  false ;
+    </script>
+    <script src='/static/slides.js'></script>
+
+    
+
+    <script>
+      
+      if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+        var _gaq = _gaq || [];
+        _gaq.push(["_setAccount", "UA-11222381-6"]);
+        _gaq.push(["b._setAccount", "UA-49880327-6"]);
+        window.trackPageview = function() {
+          _gaq.push(["_trackPageview", location.pathname+location.hash]);
+          _gaq.push(["b._trackPageview", location.pathname+location.hash]);
+        };
+        window.trackPageview();
+        window.trackEvent = function(category, action, opt_label, opt_value, opt_noninteraction) {
+          _gaq.push(["_trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+          _gaq.push(["b._trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+        };
+      }
+    </script>
+  </head>
+
+  <body style='display: none'>
+
+    <section class='slides layout-widescreen'>
+
+      <article>
+        <h1>The State of Go</h1>
+        <h3>Where we are in February 2017</h3>
+        
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Francesc Campoy
+  </p>
+  
+
+  
+  <p>
+    Google Developer Advocate
+  </p>
+  
+
+          </div>
+        
+      </article>
+
+  
+  
+      <article >
+      
+        <h2>Changes to the language</h2>
+      
+      <span class="pagenumber">2</span>
+      </article>
+  
+  
+  
+      <article >
+      
+        <h3>Conversion rules</h3>
+        
+  
+  <p>
+    How many times have you found yourself with two types that were <b>almost</b> equal?
+  </p>
+  
+
+  
+  <p>
+    Let&#39;s say you define <code>Person</code>:
+  </p>
+  
+
+  <div class="code playground" >
+<pre style="display: none"><span>package main
+
+import &#34;fmt&#34;
+
+type Presenter interface {
+	Introduce()
+}
+
+</span></pre><pre><span num="9">type Language struct {</span>
+<span num="10">    Name        string</span>
+<span num="11">    Maintainer  string</span>
+<span num="12">    Motivations []string</span>
+<span num="13">}</span>
+</pre>
+<pre style="display: none"><span>
+func NewLanguage(name, maintainer string, motivations []string) *Language {
+	return &amp;Language{
+		Name:        name,
+		Maintainer:  maintainer,
+		Motivations: motivations,
+	}
+}
+func (l *Language) Introduce() {
+	fmt.Printf(&#34;%s is maintained by %s:&#34;, l.Name, l.Maintainer)
+	fmt.Println(&#34;designed to provide:&#34;)
+	for i, motivation := range l.Motivations {
+		fmt.Printf(&#34;%d - %s\n&#34;, i&#43;1, motivation)
+	}
+}
+
+func main() {
+	var presenter Presenter = NewLanguage(
+		&#34;Golang&#34;,
+		&#34;Google&#34;,
+		[]string{
+			&#34;Native concurrency constructs&#34;,
+			&#34;Garbage collection&#34;,
+			&#34;Ease of adoption&#34;,
+		},
+	)
+
+	presenter.Introduce()
+}
+</span></pre></div>
+
+  
+  <p>
+    And that for some reason, like JSON you also have:
+  </p>
+  
+
+      
+      <span class="pagenumber">3</span>
+      </article>
+  
+  
+  
+      <article >
+      
+        <h2>Conversion rules</h2>
+      
+      <span class="pagenumber">4</span>
+      </article>
+  
+  
+
+      <article>
+        <h3>Thank you</h3>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Francesc Campoy
+  </p>
+  
+
+  
+  <p>
+    Google Developer Advocate
+  </p>
+  
+<p class="link"><a href="http://twitter.com/francesc" target="_blank">@francesc</a></p><p class="link"><a href="mailto:campoy@golang.org" target="_blank">campoy@golang.org</a></p>
+          </div>
+        
+      </article>
+
+    </section>
+
+    <div id="help">
+      Use the left and right arrow keys or click the left and right
+      edges of the page to navigate between slides.<br>
+      (Press 'H' or navigate to hide this message.)
+    </div>
+
+    
+    <script src='/play.js'></script>
+    
+
+    <script>
+      (function() {
+        
+        if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+          var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+          ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+          var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+        }
+      })();
+    </script>
+  </body>
+</html>
